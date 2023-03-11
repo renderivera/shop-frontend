@@ -1,30 +1,37 @@
 import styled from "styled-components";
-import { slides } from "../data.js";
+import { slides } from "../mockdata.js";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
 import SlideType from "../types/SlideType";
 
 const Slide = styled.div<SlideType>`
 	background-color: ${(p) => p.color};
-	height: 40vh;
+	height: 60vh;
 	display: flex;
 	gap: 10%;
 	align-items: center;
 	flex-wrap: wrap;
 	justify-content: center;
+	position: relative;
 `;
 const SlideText = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	gap: 10px;
+	z-index: 2;
+	width: 100%;
+	background-color: inherit;
+	opacity: 0.75;
+	padding: 20px;
 `;
 const SlideImage = styled.img`
-	display: block;
-	max-width: 100%;
-	max-height: 100%;
-	width: auto !important;
-	height: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 `;
 
 const SlideHeading = styled.h2`
@@ -42,14 +49,14 @@ const SlideButton = styled.button`
 	cursor: pointer;
 `;
 
-export default function Slider() {
+export default function Hero() {
 	return (
 		<Carousel
 			showArrows={true}
 			showThumbs={false}
 			showStatus={false}
 			autoPlay={true}
-			interval={3000}
+			interval={10000}
 			infiniteLoop={true}
 		>
 			{slides.map((s) => (

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsSearch, BsCart } from "react-icons/bs";
+import { GiLotus } from "react-icons/gi";
 const Container = styled.div`
 	display: flex;
 	align-items: center;
@@ -39,6 +40,12 @@ const Input = styled.input`
 const Logo = styled.h1`
 	text-transform: uppercase;
 	margin: 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	color: transparent;
 `;
 
 const Login = styled.div``;
@@ -62,7 +69,10 @@ export default function Navbar() {
 	return (
 		<Container>
 			<Left>
-				<Logo>Renderivera.</Logo>
+				<Logo>
+					<GiLotus color="#30cfd0" />
+					Renderivera.
+				</Logo>
 			</Left>
 			<Center></Center>
 			<Right>
