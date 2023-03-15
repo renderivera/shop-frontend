@@ -85,7 +85,7 @@ export default function Footer() {
 				</Center>
 				<Right>
 					<Title>Contact</Title>
-					<Text>
+					<div>
 						<Contact>
 							<BsFillPinMapFill />
 							8532 Melrose Ave, Los Angeles
@@ -98,7 +98,7 @@ export default function Footer() {
 							<BsFillTelephoneFill />
 							+1 424-999-0954
 						</Contact>
-					</Text>
+					</div>
 				</Right>
 			</Columns>
 			<Copyright>Copyright 2023, Renderivera</Copyright>

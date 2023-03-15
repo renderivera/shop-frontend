@@ -1,10 +1,12 @@
+import CategoryType from "./CategoryType";
+import ImageType from "./ImageType";
+
 export default interface ProductType {
 	id: number;
 	title: string;
 	description: string;
-	images: string[];
-	categories: number[];
+	images: ImageType[];
+	categories: CategoryType[];
 	price: number;
-	priceSale?: number;
-	trending?: boolean;
+	featured: boolean;
 }

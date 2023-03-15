@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CategoryType from "../types/CategoryType";
+import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
 	position: relative;
@@ -61,14 +62,15 @@ interface CategoryItemProps {
 export default function CategoryItem({ item }: CategoryItemProps) {
 	return (
 		<Container>
-			<ItemImage src={item.image} />
-			<Overlay>
-				<OverlayBg>
-					<ItemTitle>{item.title}</ItemTitle>
-					<ItemDesc>{item.description}</ItemDesc>
-					<Button>shop now</Button>
-				</OverlayBg>
-			</Overlay>
+			<NavLink to={`/categories/${item.id}`}>
+				<ItemImage src={item.image.url} />
+				<Overlay>
+					<OverlayBg>
+						<ItemTitle>{item.title}</ItemTitle>
+						<Button>shop now</Button>
+					</OverlayBg>
+				</Overlay>
+			</NavLink>
 		</Container>
 	);
 }

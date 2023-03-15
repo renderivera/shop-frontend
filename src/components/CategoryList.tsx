@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { categories } from "../mockdata";
+import { useGetCategoriesQuery } from "../store";
 import CategoryType from "../types/CategoryType";
 import CategoryItem from "./CategoryItem";
 
@@ -18,29 +19,17 @@ const CategoriesContainer = styled.div`
 	flex-wrap: wrap;
 `;
 
-interface CategoryListProps {
-	filterCategories?: number[];
-}
+export default function CategoryList() {
+	const categoriesQuery = useGetCategoriesQuery("");
 
-export default function CategoryList({ filterCategories }: CategoryListProps) {
-	let catList: CategoryType[];
-
-	if (filterCategories) {
-		catList = categories.filter((c) => {
-			if (filterCategories) return filterCategories.includes(c.id);
-		});
-	} else {
-		catList = categories;
-	}
+	const content = categoriesQuery.data?.map((c) => {
+		return <CategoryItem key={c.id} item={c} />;
+	});
 
 	return (
 		<Container>
 			<Heading>Categories</Heading>
-			<CategoriesContainer>
-				{catList.map((c) => (
-					<CategoryItem key={c.id} item={c} />
-				))}
-			</CategoriesContainer>
+			<CategoriesContainer>{content}</CategoriesContainer>
 		</Container>
 	);
 }

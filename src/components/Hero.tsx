@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { slides } from "../mockdata.js";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -14,7 +14,7 @@ const Slide = styled.div<SlideType>`
 	justify-content: center;
 	position: relative;
 `;
-const SlideText = styled.div`
+const Text = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -25,7 +25,7 @@ const SlideText = styled.div`
 	opacity: 0.75;
 	padding: 20px;
 `;
-const SlideImage = styled.img`
+const Image = styled.img`
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -34,19 +34,38 @@ const SlideImage = styled.img`
 	object-fit: cover;
 `;
 
-const SlideHeading = styled.h2`
+const Heading = styled.h2`
 	font-size: xx-large;
 	margin: 0;
 `;
-const SlideDescription = styled.p`
+const Description = styled.p`
 	margin: 0;
 `;
-const SlideButton = styled.button`
+const Button = styled.button`
 	align-self: center;
 	background-color: transparent;
 	border: 1px solid black;
 	width: 100px;
 	cursor: pointer;
+`;
+
+const breathAnimation = keyframes`
+ 50%  { scale: 1.15 }
+`;
+const Ball = styled.div`
+	background-color: inherit;
+	box-shadow: 0px 0px 5px white;
+	border-radius: 50%;
+	position: absolute;
+	top: 25%;
+	width: 30vh;
+	height: 30vh;
+	opacity: 1;
+	animation: ${breathAnimation} 10s ease-in-out infinite;
+	transition: all 0.5s;
+	&:hover {
+		box-shadow: 0px 0px 5px yellow;
+	}
 `;
 
 export default function Hero() {
@@ -61,12 +80,13 @@ export default function Hero() {
 		>
 			{slides.map((s) => (
 				<Slide color={s.color} key={s.id}>
-					<SlideText>
-						<SlideHeading>{s.title}</SlideHeading>
-						<SlideDescription>{s.description}</SlideDescription>
-						<SlideButton>Learn more</SlideButton>
-					</SlideText>
-					<SlideImage src={s.image} />
+					<Text>
+						<Heading>{s.title}</Heading>
+						<Description>{s.description}</Description>
+						<Button>Learn more</Button>
+					</Text>
+					<Image src={s.image} />
+					<Ball />
 				</Slide>
 			))}
 		</Carousel>

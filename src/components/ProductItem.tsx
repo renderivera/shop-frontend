@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ProductType from "../types/ProductType";
+import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
 	width: 225px;
@@ -36,15 +37,24 @@ interface ProductItemProps {
 	item: ProductType;
 }
 
+const maxTitleLength = 35;
+
 export default function ProductItem({ item }: ProductItemProps) {
+	const title =
+		item.title.length > maxTitleLength
+			? `${item.title.substring(0, maxTitleLength).trimEnd()}...`
+			: item.title;
+
 	return (
 		<Container>
-			<ImageContainer>
-				<Image src={item.images[0]} />
-				<ImageHover src={item.images[1]} />
-			</ImageContainer>
-			<Title>{item.title}</Title>
-			<Price>{item.price}$</Price>
+			<NavLink to={`/products/${item.id}`}>
+				<ImageContainer>
+					<Image src={item.images[0].url} />
+					<ImageHover src={item.images[1].url} />
+				</ImageContainer>
+				<Title>{title}</Title>
+				<Price>{item.price}$</Price>
+			</NavLink>
 		</Container>
 	);
 }

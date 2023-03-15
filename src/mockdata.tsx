@@ -11,7 +11,7 @@ export const slides: SlideType[] = [
 		color: "#FFF6BD",
 		title: "Yoga Love",
 		description: "Buy now and save big time!",
-		image: "https://drive.google.com/uc?id=11Jj5Iz0y_nbuBMeqXYXBH6qO6aA7Gp19",
+		image: "https://drive.google.com/uc?id=1Mlb6HYBOhaMJcrIeiMXBwvCnussgSL-o",
 	},
 	{
 		id: 1,
@@ -25,7 +25,7 @@ export const slides: SlideType[] = [
 		color: "#CEEDC7",
 		title: "Yoga Fitness",
 		description: "Buy now and save big time!",
-		image: "https://drive.google.com/uc?id=1Mlb6HYBOhaMJcrIeiMXBwvCnussgSL-o",
+		image: "https://drive.google.com/uc?id=11Jj5Iz0y_nbuBMeqXYXBH6qO6aA7Gp19",
 	},
 ];
 
