@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { BsSearch, BsCart } from "react-icons/bs";
 import { GiLotus } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { UserState } from "../store";
+import { auth, signOut } from "../firebase";
+
 const Container = styled.div`
 	display: flex;
 	align-items: center;
@@ -66,6 +71,13 @@ const CartBadge = styled.div`
 `;
 
 export default function Navbar() {
+	const user = useSelector(({ user }: { user: UserState }) => user.user);
+	const signedIn = user !== undefined;
+
+	const handleLogout = () => {
+		signOut(auth);
+	};
+
 	return (
 		<Container>
 			<Left>
@@ -80,7 +92,14 @@ export default function Navbar() {
 					<Input />
 					<BsSearch size={10} />
 				</Search>
-				<Login>Login/Register</Login>
+
+				{!signedIn && (
+					<Login>
+						<NavLink to="/signin">Sign In</NavLink>/
+						<NavLink to="/signup">Sign Up</NavLink>
+					</Login>
+				)}
+				{signedIn && <button onClick={handleLogout}>logout</button>}
 				<Cart>
 					<CartBadge>4</CartBadge>
 					<BsCart size={30} />
