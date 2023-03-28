@@ -16,11 +16,19 @@ const firebaseConfig = {
 	appId: import.meta.env.VITE_FIREBASE_appId,
 };
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export {
-	createUserWithEmailAndPassword,
-	onAuthStateChanged,
-	signOut,
-	signInWithEmailAndPassword,
-};
+
+export function signIn(email: string, password: string) {
+	return signInWithEmailAndPassword(auth, email, password);
+}
+
+export function signUp(email: string, password: string) {
+	return createUserWithEmailAndPassword(auth, email, password);
+}
+
+export function signOutUser() {
+	return signOut(auth);
+}
+
+export { onAuthStateChanged };

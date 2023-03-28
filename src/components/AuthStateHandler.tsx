@@ -9,7 +9,6 @@ export default function AuthStateHandler() {
 	useEffect(() => {
 		const unsubsribe = onAuthStateChanged(auth, (user) => {
 			dispatch(setUser(user?.toJSON()));
-			console.log(user);
 		});
 		return unsubsribe;
 	}, []);

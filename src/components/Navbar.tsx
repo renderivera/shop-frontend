@@ -4,7 +4,7 @@ import { GiLotus } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UserState } from "../store";
-import { auth, signOut } from "../firebase";
+import { signOutUser } from "../firebase";
 
 const Container = styled.div`
 	display: flex;
@@ -17,6 +17,7 @@ const Left = styled.div`
 	flex: 1;
 	display: flex;
 	align-items: center;
+	gap: 20px;
 `;
 const Center = styled.div`
 	flex: 1;
@@ -70,12 +71,17 @@ const CartBadge = styled.div`
 	top: 0px;
 `;
 
+const SignedInAs = styled.p`
+	margin: 0;
+	font-size: small;
+`;
+
 export default function Navbar() {
 	const user = useSelector(({ user }: { user: UserState }) => user.user);
 	const signedIn = user !== undefined;
 
 	const handleLogout = () => {
-		signOut(auth);
+		signOutUser();
 	};
 
 	return (
@@ -85,21 +91,25 @@ export default function Navbar() {
 					<GiLotus color="#30cfd0" />
 					Renderivera.
 				</Logo>
-			</Left>
-			<Center></Center>
-			<Right>
 				<Search>
 					<Input />
 					<BsSearch size={10} />
 				</Search>
-
+			</Left>
+			<Center></Center>
+			<Right>
 				{!signedIn && (
 					<Login>
 						<NavLink to="/signin">Sign In</NavLink>/
 						<NavLink to="/signup">Sign Up</NavLink>
 					</Login>
 				)}
-				{signedIn && <button onClick={handleLogout}>logout</button>}
+				{signedIn && (
+					<>
+						<SignedInAs>{user.email}</SignedInAs>
+						<button onClick={handleLogout}>logout</button>
+					</>
+				)}
 				<Cart>
 					<CartBadge>4</CartBadge>
 					<BsCart size={30} />
