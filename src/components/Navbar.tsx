@@ -3,7 +3,7 @@ import { BsSearch, BsCart } from "react-icons/bs";
 import { GiLotus } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { UserState } from "../store";
+import { CartState, UserState } from "../store";
 import { signOutUser } from "../firebase";
 
 const Container = styled.div`
@@ -78,6 +78,9 @@ const SignedInAs = styled.p`
 
 export default function Navbar() {
 	const user = useSelector(({ user }: { user: UserState }) => user.user);
+	const cartItemsLength = useSelector(
+		({ cart }: { cart: CartState }) => cart.cartItems.length
+	);
 	const signedIn = user !== undefined;
 
 	const handleLogout = () => {
@@ -111,7 +114,7 @@ export default function Navbar() {
 					</>
 				)}
 				<Cart>
-					<CartBadge>4</CartBadge>
+					<CartBadge>{cartItemsLength}</CartBadge>
 					<BsCart size={30} />
 				</Cart>
 			</Right>

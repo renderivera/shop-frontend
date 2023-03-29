@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
-import { auth, createUserWithEmailAndPassword } from "../firebase";
+import { signUp } from "../firebase";
 
 const Form = styled.form`
 	display: flex;
@@ -45,7 +45,7 @@ export default function SignUp() {
 			return;
 		}
 		setLoading(true);
-		createUserWithEmailAndPassword(auth, email, pwd)
+		signUp(email, pwd)
 			.catch((reason: Error) => {
 				setError(reason.message);
 			})

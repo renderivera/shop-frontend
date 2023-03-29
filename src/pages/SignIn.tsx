@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
-import { auth, signInWithEmailAndPassword } from "../firebase";
+import { signIn } from "../firebase";
 
 const Form = styled.form`
 	display: flex;
@@ -39,7 +39,7 @@ export default function SignIn() {
 		const pwd = passwordRef.current?.value as string;
 
 		setLoading(true);
-		signInWithEmailAndPassword(auth, email, pwd)
+		signIn(email, pwd)
 			.catch((reason: Error) => {
 				setError(reason.message);
 			})

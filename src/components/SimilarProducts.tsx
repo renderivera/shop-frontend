@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useGetProductsQuery } from "../store";
-import CategoryType from "../types/CategoryType";
+import ProductType from "../types/ProductType";
 import Product from "./ProductItem";
 
 const Container = styled.div`
@@ -17,20 +17,23 @@ const ProductsContainer = styled.div`
 	justify-content: center;
 `;
 
-interface productListProps {
-	category: CategoryType | undefined;
-}
-
-export default function ProductList({ category }: productListProps) {
+export default function SimilarProducts({
+	product,
+}: {
+	product: ProductType | undefined;
+}) {
 	const productsQuery = useGetProductsQuery("");
+
 	const content = productsQuery.data
 		?.filter(
-			(p) => p.categories.filter((c) => c.id === category?.id).length > 0
+			(p) =>
+				p.categories[0].id === product?.categories[0].id && p.id !== product?.id
 		)
 		.map((p) => <Product key={p.id} item={p} />);
 
 	return (
 		<Container>
+			<h2>Similar Products</h2>
 			<ProductsContainer>{content}</ProductsContainer>
 		</Container>
 	);
