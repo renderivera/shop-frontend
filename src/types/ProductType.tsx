@@ -8,6 +8,5 @@ export default interface ProductType {
 	images: ImageType[];
 	categories: CategoryType[];
 	price: number;
-	stripeId: string;
 	featured: boolean;
 }

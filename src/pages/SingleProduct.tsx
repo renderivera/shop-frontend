@@ -32,7 +32,7 @@ export default function SingleProduct() {
 	const cartItems = useSelector(
 		({ cart }: { cart: CartState }) => cart.cartItems
 	);
-	const productInCart = cartItems.filter((p) => p.id === product?.id).length;
+	const productInCart = cartItems.filter((p) => p === product).length;
 
 	const dispatch = useDispatch();
 

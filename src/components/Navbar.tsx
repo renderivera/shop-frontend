@@ -114,8 +114,10 @@ export default function Navbar() {
 					</>
 				)}
 				<Cart>
-					<CartBadge>{cartItemsLength}</CartBadge>
-					<BsCart size={30} />
+					<NavLink to="/cart">
+						<CartBadge>{cartItemsLength}</CartBadge>
+						<BsCart size={30} />
+					</NavLink>
 				</Cart>
 			</Right>
 		</Container>

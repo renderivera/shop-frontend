@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import CategoryType from "../../types/CategoryType";
 import ProductType from "../../types/ProductType";
 
 export const productsApi = createApi({
@@ -14,5 +13,3 @@ export const productsApi = createApi({
 		}),
 	}),
 });
-
-export const { useGetProductsQuery } = productsApi;
