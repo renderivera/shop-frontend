@@ -1,22 +1,30 @@
-import ProductType from "../types/ProductType";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { CartState, useGetProductsQuery } from "../store";
 import { Carousel } from "react-responsive-carousel";
 import styled from "styled-components";
 import { addToCart, removeOneFromCart } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 import SimilarProducts from "../components/SimilarProducts";
-import ProductList from "../components/ProductList";
 
-interface SingleProductProps {
-	product: ProductType;
-}
+const Center = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
 
 const Container = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	gap: 20px;
 	margin: 20px;
-	justify-content: center;
+	max-width: 1024px;
+`;
+
+const ProductDetails = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 300px;
 `;
 
 const CartInput = styled.input`
@@ -44,19 +52,20 @@ export default function SingleProduct() {
 	};
 
 	return (
-		<>
+		<Center>
 			<Container>
 				<Carousel
 					showArrows={false}
 					showThumbs={true}
 					showStatus={false}
 					autoPlay={false}
+					width="350px"
 				>
 					{product?.images.map((i) => (
 						<img key={i.id} src={i.url} />
 					))}
 				</Carousel>
-				<div>
+				<ProductDetails>
 					<h1>{product?.title}</h1>
 					<p>{product?.description}</p>
 					<div>
@@ -64,11 +73,14 @@ export default function SingleProduct() {
 						<CartInput type="text" readOnly value={productInCart} />
 						<button onClick={handleAddToCart}>+</button>
 					</div>
-				</div>
+					<NavLink to="/cart">
+						<button>View Cart</button>
+					</NavLink>
+				</ProductDetails>
 			</Container>
 			<div>
 				<SimilarProducts product={product} />
 			</div>
-		</>
+		</Center>
 	);
 }
