@@ -29,6 +29,7 @@ export const slides: SlideType[] = [
 	},
 ];
 
+/*
 export const categories: CategoryType[] = [
 	{
 		id: 0,
@@ -169,3 +170,4 @@ Made in England from ECONYL®, a soft and supportive nylon made from recycled ma
 		price: 29.99,
 	},
 ];
+*/
