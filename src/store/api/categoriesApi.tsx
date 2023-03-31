@@ -3,7 +3,9 @@ import CategoryType from "../../types/CategoryType";
 
 export const categoriesApi = createApi({
 	reducerPath: "categories",
-	baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/categories" }),
+	baseQuery: fetchBaseQuery({
+		baseUrl: `${import.meta.env.VITE_SERVER_URL}/categories`,
+	}),
 	endpoints: (builder) => ({
 		getCategories: builder.query<CategoryType[], string>({
 			query: () => ({
