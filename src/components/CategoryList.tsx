@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { categories } from "../mockdata";
 import { useGetCategoriesQuery } from "../store";
-import CategoryType from "../types/CategoryType";
 import CategoryItem from "./CategoryItem";
 
 const Container = styled.div`
