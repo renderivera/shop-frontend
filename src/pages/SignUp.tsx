@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import { signUp } from "../firebase";
+import { NavLink } from "react-router-dom";
 
 const Form = styled.form`
 	display: flex;
@@ -72,6 +73,9 @@ export default function SignUp() {
 				/>
 				<Input type="submit" value="sign up" disabled={loading} />
 			</Form>
+			<div>
+				already have an account? <NavLink to="/signin">Sign In</NavLink>/
+			</div>
 		</Container>
 	);
 }

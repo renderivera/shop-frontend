@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CartState, UserState } from "../store";
 import { signOutUser } from "../firebase";
+import { AiOutlineUser } from "react-icons/ai";
 
 const Container = styled.div`
 	display: flex;
@@ -19,28 +20,14 @@ const Left = styled.div`
 	align-items: center;
 	gap: 20px;
 `;
-const Center = styled.div`
-	flex: 1;
-	text-align: center;
-`;
+
 const Right = styled.div`
 	flex: 1;
+	margin-left: auto;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	gap: 30px;
-`;
-
-const Search = styled.div`
-	border: 1px solid black;
-	display: flex;
-	align-items: center;
-	width: fit-content;
-	padding: 5px;
-`;
-
-const Input = styled.input`
-	border: none;
+	gap: 10px;
 `;
 
 const Logo = styled.h1`
@@ -52,9 +39,12 @@ const Logo = styled.h1`
 	background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
 	-webkit-background-clip: text;
 	color: transparent;
+	font-size: 25px;
 `;
 
-const Login = styled.div``;
+const Login = styled.div`
+	font-size: 30px;
+`;
 const Cart = styled.div`
 	position: relative;
 `;
@@ -94,25 +84,17 @@ export default function Navbar() {
 					<GiLotus color="#30cfd0" />
 					Renderivera.
 				</Logo>
-				<Search>
-					<Input />
-					<BsSearch size={10} />
-				</Search>
 			</Left>
-			<Center></Center>
+
 			<Right>
 				{!signedIn && (
 					<Login>
-						<NavLink to="/signin">Sign In</NavLink>/
-						<NavLink to="/signup">Sign Up</NavLink>
+						<NavLink to="/signup">
+							<AiOutlineUser />
+						</NavLink>
 					</Login>
 				)}
-				{signedIn && (
-					<>
-						<SignedInAs>{user.email}</SignedInAs>
-						<button onClick={handleLogout}>logout</button>
-					</>
-				)}
+				{signedIn && <button onClick={handleLogout}>logout</button>}
 				<Cart>
 					<NavLink to="/cart">
 						<CartBadge>{cartItemsLength}</CartBadge>

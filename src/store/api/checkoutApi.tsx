@@ -9,7 +9,7 @@ export const checkoutApi = createApi({
 	endpoints: (builder) => ({
 		createCheckoutSession: builder.mutation({
 			query: ({ cartItems }: { cartItems: ProductType[] }) => ({
-				url: "/",
+				url: "",
 				method: "POST",
 				body: { cartItems },
 			}),
