@@ -15,6 +15,8 @@ const CategoriesContainer = styled.div`
 	display: flex;
 	gap: 20px;
 	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 `;
 
 export default function CategoryList() {

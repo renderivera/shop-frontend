@@ -15,6 +15,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import SingleCategory from "./pages/SingleCategory";
 import SingleProduct from "./pages/SingleProduct";
+import "./styles.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 interface props {
 	store: ToolkitStore;
@@ -25,6 +27,7 @@ export default function App({ store }: props) {
 		<Provider store={store}>
 			<BrowserRouter>
 				<AuthStateHandler />
+				<ScrollToTop />
 				<Announcement />
 				<Navbar />
 				<Routes>
